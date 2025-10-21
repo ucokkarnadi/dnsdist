@@ -1,0 +1,1 @@
+deb [signed-by=/etc/apt/keyrings/dnsdist-19-pub.asc] http://repo.powerdns.com/ubuntu noble-dnsdist-19 main
