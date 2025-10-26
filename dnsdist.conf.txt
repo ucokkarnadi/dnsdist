@@ -12,7 +12,7 @@ pc = newPacketCache( 10000000, { maxTTL=86400, minTTL=0, temporaryFailureTTL=30,
 getPool(""):setCache(pc)
 
 webserver("0.0.0.0:8083")
-setWebserverConfig({acl="127.0.0.1/32, 192.168.0.0/16, 172.16.0.0/12, 10.0.0.0/8", password="$scrypt$ln=10,p=1,r=8$gN60ivs+9RFjp4tcAkPq8A==$ish2zhsXH6Yn5KBdhqW3kaj8YmnsEsL0yOz8dQgSHw0="})
+setWebserverConfig({acl="0.0.0.0/0", password="$scrypt$ln=10,p=1,r=8$gN60ivs+9RFjp4tcAkPq8A==$ish2zhsXH6Yn5KBdhqW3kaj8YmnsEsL0yOz8dQgSHw0="})
 
 addLocal("0.0.0.0", {reusePort=true})
 addLocal("0.0.0.0", {reusePort=true})
@@ -23,8 +23,20 @@ addLocal("[::0]", {reusePort=true})
 addLocal("[::0]", {reusePort=true})
 addLocal("[::0]", {reusePort=true})
 
-newServer({address="8.8.8.8", name="JSN", qps=1000, useClientSubnet=true, mustResolve=true })
-newServer({address="8.8.4.4", name="JSN", qps=1000, useClientSubnet=true, mustResolve=true })
+newServer({address="103.80.80.243", weight=100000, name="JSN", useClientSubnet=true, checkType="A", checkName="localhost.", mustResolve=true })
+newServer({address="103.80.80.244", weight=100000, name="JSN", useClientSubnet=true, checkType="A", checkName="localhost.", mustResolve=true })
+newServer({address="103.80.80.248", weight=100000, name="JSN", useClientSubnet=true, checkType="A", checkName="localhost.", mustResolve=true })
+newServer({address="103.80.80.249", weight=100000, name="JSN", useClientSubnet=true, checkType="A", checkName="localhost.", mustResolve=true })
+
+newServer({address="103.67.47.10", weight=2, name="JSN", useClientSubnet=true, checkType="A", checkName="localhost.", mustResolve=true })
+newServer({address="103.67.47.13", weight=2, name="JSN", useClientSubnet=true, checkType="A", checkName="localhost.", mustResolve=true })
+newServer({address="103.67.47.10", weight=2, name="JSN", useClientSubnet=true, checkType="A", checkName="localhost.", mustResolve=true })
+newServer({address="103.67.47.13", weight=2, name="JSN", useClientSubnet=true, checkType="A", checkName="localhost.", mustResolve=true })
+
+newServer({address="8.8.8.8", name="JSN", qps=1400, useClientSubnet=true, mustResolve=true })
+newServer({address="8.8.4.4", name="JSN", qps=1400, useClientSubnet=true, mustResolve=true })
+newServer({address="1.1.1.1", name="JSN", qps=1400, useClientSubnet=true, mustResolve=true })
+newServer({address="1.0.0.1", name="JSN", qps=1400, useClientSubnet=true, mustResolve=true })
 
 setECSOverride(true)
 setECSSourcePrefixV4(32)
